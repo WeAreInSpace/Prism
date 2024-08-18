@@ -1,8 +1,7 @@
 ---
-name: Bug report
-about: Report issues with plugin incompatibility or other behavior-related issues.
-  <3
-title: "[BUG]"
+name: Performance report
+about: Report performance related problems. <3
+title: "[PERFORMANCE]"
 labels: ''
 assignees: ''
 
