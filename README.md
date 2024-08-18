@@ -1,6 +1,6 @@
 # Prism Server
 
-Prism is a 1.8.8 Minecraft server software focused on improving server experience based on a fork of **[WindSpigot](https://github.com/Wind-Development/WindSpigot)**.
+Prism is a 1.8.8 Minecraft server software focused on improving server based on a fork of **[WindSpigot](https://github.com/Wind-Development/WindSpigot)**.
 
 ## Download
 
