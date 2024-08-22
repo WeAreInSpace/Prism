@@ -229,47 +229,35 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
 				DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
 				// Spigot start
 				if (org.spigotmc.SpigotConfig.bungee) {
-					DedicatedServer.LOGGER.warn(
-							"Whilst this makes it possible to use BungeeCord, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose.");
-					DedicatedServer.LOGGER
-							.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
+					DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose.");
+					DedicatedServer.LOGGER.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
 					if (!WindSpigotConfig.stopNotifyBungee) {
-						DedicatedServer.LOGGER
-								.warn("---------------------------- WindSpigot Checker ----------------------------");
-						DedicatedServer.LOGGER.warn(
-								"If you don't want to see this message anymore, set \"settings.stop-notify-bungee\" to \"true\" in \"windspigot.yml\"!");
+						DedicatedServer.LOGGER.warn("---------------------------- WindSpigot Checker ----------------------------");
+						DedicatedServer.LOGGER.warn("If you don't want to see this message anymore, set \"settings.stop-notify-bungee\" to \"true\" in \"windspigot.yml\"!");
 						DedicatedServer.LOGGER.warn("Checking firewall..");
 						try {
 							String external = IPUtils.getExternalAddress();
 							int port = getServerPort();
 							if (IPUtils.isAccessible(external, port)) {
 								DedicatedServer.LOGGER.error("THIS SERVER IS ACCESSIBLE FROM THE OUTSIDE");
-								DedicatedServer.LOGGER
-										.error("WITHOUT HAVING A PROPER PLUGIN LIKE BUNGEEGUARD INSTALLED");
-								DedicatedServer.LOGGER
-										.error("EVERYONE WILL BE ABLE TO JOIN THIS SERVER IN OFFLINE MODE");
-								DedicatedServer.LOGGER
-										.error("PLEASE FIX YOUR FIREWALL OR INSTALL A PLUGIN LIKE BUNGEEGUARD");
-								DedicatedServer.LOGGER
-										.error("AND THEN DISABLE THIS NOTIFICATION IN THE CONFIGURATION FILE");
+								DedicatedServer.LOGGER.error("WITHOUT HAVING A PROPER PLUGIN LIKE BUNGEEGUARD INSTALLED");
+								DedicatedServer.LOGGER.error("EVERYONE WILL BE ABLE TO JOIN THIS SERVER IN OFFLINE MODE");
+								DedicatedServer.LOGGER.error("PLEASE FIX YOUR FIREWALL OR INSTALL A PLUGIN LIKE BUNGEEGUARD");
+								DedicatedServer.LOGGER.error("AND THEN DISABLE THIS NOTIFICATION IN THE CONFIGURATION FILE");
 							} else {
-								DedicatedServer.LOGGER.info(
-										"This instance does not seem to be accessible from the internet, good! Continuing..");
+								DedicatedServer.LOGGER.info("This instance does not seem to be accessible from the internet, good! Continuing..");
 							}
 						} catch (Exception e) {
 							DedicatedServer.LOGGER.error("Could not check firewall..");
 							e.printStackTrace();
 						}
-						DedicatedServer.LOGGER
-								.warn("---------------------------- WindSpigot Checker ----------------------------");
+						DedicatedServer.LOGGER.warn("---------------------------- WindSpigot Checker ----------------------------");
 					}
 				} else {
-					DedicatedServer.LOGGER.warn(
-							"While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
+					DedicatedServer.LOGGER.warn("While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
 				}
 				// Spigot end
-				DedicatedServer.LOGGER
-						.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
+				DedicatedServer.LOGGER.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
 			}
 
 			if (this.aR()) {

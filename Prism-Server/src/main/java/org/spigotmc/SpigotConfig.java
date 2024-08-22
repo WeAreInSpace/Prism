@@ -322,8 +322,7 @@ public class SpigotConfig {
 			set("commands.replace-commands", config.getStringList("replace-commands"));
 			config.set("replace-commands", null);
 		}
-		replaceCommands = new HashSet<String>(
-				getList("commands.replace-commands", Arrays.asList("setblock", "summon", "testforblock", "tellraw")));
+		replaceCommands = new HashSet<String>(getList("commands.replace-commands", Arrays.asList("setblock", "summon", "testforblock", "tellraw")));
 	}
 
 	public static int userCacheCap;

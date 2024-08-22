@@ -73,9 +73,6 @@ public class WindSpigot {
 			PingCommand pingCommand = new PingCommand("ping");
 			commandMap.register(pingCommand.getName(), "", pingCommand);
 		}
-	
-		
-		
 		// NachoSpigot commands
 		// TODO: add configuration for all of these
 		SetMaxSlotCommand setMaxSlotCommand = new SetMaxSlotCommand("sms"); // [Nacho-0021] Add setMaxPlayers within Bukkit.getServer() and SetMaxSlot Command

@@ -182,8 +182,8 @@ public final class CraftServer implements Server {
 	private final SimpleHelpMap helpMap = new SimpleHelpMap(this);
 	private final StandardMessenger messenger = new StandardMessenger();
 	private final PluginManager pluginManager = new SimplePluginManager(this, commandMap);
-	protected final MinecraftServer console;
-	protected final DedicatedPlayerList playerList;
+	final MinecraftServer console;
+	private final DedicatedPlayerList playerList;
 	private final Map<String, World> worlds = new LinkedHashMap<>();
 	private YamlConfiguration configuration;
 	private YamlConfiguration commandsConfiguration;
@@ -227,7 +227,7 @@ public final class CraftServer implements Server {
 				Lists.transform(playerList.players, net.minecraft.server.EntityPlayer::getBukkitEntity));
 		// WindSpigot start - manual versioning
 		if (serverName.equalsIgnoreCase("Prism")) {
-			this.serverVersion = serverName + " V1.8.24.2.2"; // Bump this every release
+			this.serverVersion = serverName + " V1.8.24"; // Bump this every release
 		} else {
 			this.serverVersion = serverName; // Only put the release version if the server version is default
 		}
@@ -253,8 +253,7 @@ public final class CraftServer implements Server {
 
 		configuration = YamlConfiguration.loadConfiguration(getConfigFile());
 		configuration.options().copyDefaults(true);
-		configuration.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(
-				getClass().getClassLoader().getResourceAsStream("configurations/bukkit.yml"), Charsets.UTF_8)));
+		configuration.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("configurations/bukkit.yml"), Charsets.UTF_8)));
 		ConfigurationSection legacyAlias = null;
 		if (!configuration.isString("aliases")) {
 			legacyAlias = configuration.getConfigurationSection("aliases");
@@ -266,8 +265,7 @@ public final class CraftServer implements Server {
 		}
 		commandsConfiguration = YamlConfiguration.loadConfiguration(getCommandsConfigFile());
 		commandsConfiguration.options().copyDefaults(true);
-		commandsConfiguration.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(
-				getClass().getClassLoader().getResourceAsStream("configurations/commands.yml"), Charsets.UTF_8)));
+		commandsConfiguration.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("configurations/commands.yml"), Charsets.UTF_8)));
 		saveCommandsConfig();
 
 		// Migrate aliases from old file and add previously implicit $1- to pass all
@@ -379,7 +377,8 @@ public final class CraftServer implements Server {
 									+ "So, if you want Citizens to work, please update!\n"
 									+ "You can download the latest version with this link:\n"
 									+ "https://ci.citizensnpcs.co/job/Citizens2/\n"
-									+ "Sleeping for 10s so this message can be read.");
+									+ "Sleeping for 10s so this message can be read."
+							);
 							Thread.sleep(10000);
 						}
 					}
@@ -937,7 +936,7 @@ public final class CraftServer implements Server {
 		try {
 			perms = (Map<String, Map<String, Object>>) yaml.load(stream);
 		} catch (MarkedYAMLException ex) {
-			getLogger().log(Level.WARNING, "Server permissions file " + file + " is not valid YAML: " + ex.toString());
+			getLogger().log(Level.WARNING, "Server permissions file " + file + " is not valid YAML: " + ex);
 			return;
 		} catch (Throwable ex) {
 			getLogger().log(Level.WARNING, "Server permissions file " + file + " is not valid YAML.", ex);
@@ -1851,8 +1850,9 @@ public final class CraftServer implements Server {
 	// PaperSpigot end
 
 	public List<String> tabCompleteCommand(Player player, String message) {
-		return tabCompleteCommand(player, message, null); // PaperSpigot - location tab-completes. Original code here
-															// moved below
+		return tabCompleteCommand(player, message, null);
+		// PaperSpigot - location tab-completes. Original code here
+		// moved below
 	}
 
 	// PaperSpigot start - add BlockPosition support
@@ -1886,7 +1886,7 @@ public final class CraftServer implements Server {
 					"Exception when " + player.getName() + " attempted to tab complete " + message, ex);
 		}
 
-		return completions == null ? ImmutableList.<String>of() : completions;
+		return completions == null ? ImmutableList.of() : completions;
 	}
 	// PaperSpigot end
 
